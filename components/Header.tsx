@@ -76,9 +76,11 @@ const Header = () => {
         )}
 
         {/* CTA Button */}
-        <button className="bg-black text-white text-base font-semibold px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-          Get Started
-        </button>
+        <Link href="/signup">
+          <button className="bg-black text-white text-base font-semibold px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+            Get Started
+          </button>
+        </Link>
       </div>
     </header>
   );

@@ -56,9 +56,9 @@ export default function SignupPage() {
       
       // Redirect to the appropriate registration page based on user type
       if (userType === 'student') {
-        router.push('/student/registration');
+        router.push(`/student/registration?uid=${user.uid}`);
       } else {
-        router.push('/mentor/registration');
+        router.push(`/mentor/registration?uid=${user.uid}`);
       }
       
     } catch (err: any) {
