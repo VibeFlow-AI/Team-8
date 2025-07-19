@@ -234,4 +234,25 @@ The application currently uses mock data for demonstration. When implementing re
 - Implement virtual scrolling for large lists
 - Use React.memo for expensive components
 
-This structure ensures maintainable, scalable code that follows Next.js and React best practices while providing clear separation of concerns between UI, business logic, and data management.
+### 11. Security Considerations
+- **Environment Variables**: Always use environment variables for sensitive information like API keys, tokens, and credentials
+- **Input Validation**: Validate all user inputs both client-side and server-side to prevent injection attacks
+- **Authentication**: Implement proper authentication flows with secure token handling
+- **Authorization**: Always verify user permissions before allowing access to protected resources
+- **HTTPS**: Ensure all API calls use HTTPS
+- **XSS Prevention**: Sanitize user-generated content before rendering to prevent cross-site scripting
+- **CSRF Protection**: Implement CSRF tokens for form submissions
+- **Data Encryption**: Encrypt sensitive data both in transit and at rest
+- **API Rate Limiting**: Implement rate limiting to prevent abuse
+- **Secure Cookies**: Use secure and HttpOnly flags on cookies containing sensitive information
+- **Content Security Policy**: Implement CSP headers to mitigate XSS attacks
+- **Dependencies**: Regularly update dependencies to patch security vulnerabilities
+- **Error Handling**: Avoid exposing sensitive information in error messages
+- **Firebase Security**: When using Firebase, implement proper security rules for Firestore, Storage, and Authentication
+- **Principle of Least Privilege**: Services and functions should have the minimum permissions necessary
+
+All code generated for this project should be secure by default, following these principles without explicit instruction. Security should never be sacrificed for convenience or speed of development.
+
+This structure ensures maintainable, scalable, and secure code that follows Next.js and React best practices while providing clear separation of concerns between UI, business logic, and data management.
+
+```
