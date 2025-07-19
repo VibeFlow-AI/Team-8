@@ -65,36 +65,7 @@ export class AuthService {
    * Register a new student
    */
   static async registerStudent(data: RegisterStudentRequest): Promise<AuthResponse> {
-    try {
-      // TODO: Replace with actual API call
-      // const response = await fetch(`${this.baseUrl}/auth/register/student`, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // });
-      // const result: ApiResponse<AuthResponse> = await response.json();
-      // return result.data;
-
-      // Mock implementation
-      const mockUser: User = {
-        id: Math.random().toString(36).substr(2, 9),
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        role: 'student',
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
-
-      return {
-        user: mockUser,
-        token: 'mock-jwt-token',
-        refreshToken: 'mock-refresh-token',
-      };
-    } catch (error) {
-      console.error('Student registration error:', error);
-      throw new Error('Registration failed');
-    }
+   
   }
 
   /**
