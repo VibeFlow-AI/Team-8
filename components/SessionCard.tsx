@@ -23,18 +23,17 @@ const SessionCard: React.FC<SessionCardProps> = ({
 }) => {
     return (
         <div className="bg-white rounded-3xl shadow-sm p-6">
-            <div className="flex items-start mb-5">
+            <div className="flex items-start mb-7">
                 <div className="mr-4">
                     <div
-                        className="w-10 h-10 flex items-center justify-center rounded-md"
+                        className="w-12 h-12 flex items-center justify-center rounded-md"
                         style={{
                             backgroundColor: initialsColor === "#0099FF" ? "#0099FF" :
                                 initialsColor === "#FF9500" ? "#FF9500" : "#D900FF"
                         }}
                     >
-                        <span className="text-white font-medium" style={{
-                            color: initialsColor === "#0099FF" ? "#FFFFFF" :
-                                initialsColor === "#FF9500" ? "#FFFFFF" : "#FFFFFF"
+                        <span className="text-white font-medium text-lg" style={{
+                            color: "#FFFFFF"
                         }}>
                             {initials}
                         </span>
@@ -42,7 +41,7 @@ const SessionCard: React.FC<SessionCardProps> = ({
                 </div>
 
                 <div>
-                    <h3 className="text-lg font-medium text-black">{name}</h3>
+                    <h3 className="text-xl font-medium text-black">{name}</h3>
                     <p className="text-sm text-gray-500">{location}</p>
                 </div>
             </div>
@@ -73,7 +72,7 @@ const SessionCard: React.FC<SessionCardProps> = ({
                 </div>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-24">
                 <button className="bg-black text-white rounded-[4px] px-4 py-2 text-sm w-full">
                     Book a session
                 </button>
