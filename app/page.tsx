@@ -6,11 +6,9 @@ import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import SessionHighlights from '@/components/SessionHighlights';
 // import SampleView from "@/components/sample-view";
-import { prisma } from "@/lib/prisma";
 
 async function Home() {
-  // This demonstrates SSR - data is fetched on the server
-  const samples = await prisma.sample.findMany();
+
 
   return (
     <main className="bg-white min-h-screen">
