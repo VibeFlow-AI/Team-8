@@ -1,59 +1,69 @@
 import React from 'react';
-import MentorCard from './MentorCard';
+import SessionCard from './SessionCard';
 
 const SessionHighlights = () => {
-  const mentors = [
+  const sessions = [
+    {
+      initials: "RL",
+      initialsColor: "#0099FF",
+      name: "Rahul Lavan",
+      location: "Colombo",
+      subjects: ["Science", "Physics", "Biology"],
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
+      duration: "30 mins - 1 hour",
+      language: "English, Tamil"
+    },
     {
       initials: "CR",
-      initialsColor: "rgba(255,149,0,1)",
+      initialsColor: "#FF9500",
       name: "Chathum Rahal",
       location: "Galle",
       subjects: ["Mathematics", "History", "English"],
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       duration: "1 hour",
-      language: "English",
-      imageSrc: "https://api.builder.io/api/v1/image/assets/484661aae812476b9c92cb43f8249b88/6184a5219b55414eed291bfd8dc4a5b0966b7fb3?placeholderIfAbsent=true",
-      buttonImageSrc: "https://api.builder.io/api/v1/image/assets/484661aae812476b9c92cb43f8249b88/f5d255d8bc24bf00931fdcb032ed08a5b752c288?placeholderIfAbsent=true"
+      language: "English"
     },
     {
       initials: "MI",
-      initialsColor: "rgba(217,0,255,1)",
+      initialsColor: "#D900FF",
       name: "Malsha Fernando",
       location: "Colombo",
       subjects: ["Chemistry", "Art", "Commerce"],
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       duration: "1 hour",
-      language: "Sinhala",
-      imageSrc: "https://api.builder.io/api/v1/image/assets/484661aae812476b9c92cb43f8249b88/6b8dcceb60b2bd2b19d0afbfd3577580954aec5e?placeholderIfAbsent=true",
-      buttonImageSrc: "https://api.builder.io/api/v1/image/assets/484661aae812476b9c92cb43f8249b88/3457c926e593a14d56eb1415ef1f823b2368f1e8?placeholderIfAbsent=true"
+      language: "Sinhala"
     }
   ];
 
   return (
-    <section>
-      <h2 className="text-black text-[66px] font-medium leading-none tracking-[-3.96px] text-center mt-[177px] max-md:max-w-full max-md:text-[40px] max-md:mt-10">
-        Session Highlights – Trending Now
-      </h2>
-      <p className="text-black text-[32px] font-normal leading-9 tracking-[-1.92px] text-center mt-6 max-md:max-w-full">
-        Join the sessions students are raving about. These expert-led,
-        high-impact sessions are designed to help you unlock your full
-        potential whether you're polishing your resume, mapping out your
-        career path, or getting ready to ace technical interviews.
-      </p>
-      <div className="mt-16 max-md:max-w-full max-md:mt-10">
-        <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
-          {mentors.map((mentor, index) => (
-            <div key={index} className="w-6/12 max-md:w-full max-md:ml-0">
-              <MentorCard {...mentor} />
-            </div>
+    <section className="relative py-16 overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-purple-50 to-yellow-100 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-center mb-4">
+          Session Highlights – Trending Now
+        </h2>
+
+        <p className="text-lg md:text-xl lg:text-2xl text-center max-w-4xl mx-auto mb-16">
+          Join the sessions students are raving about. These expert-led, high-impact
+          sessions are designed to help you unlock your full potential whether you're
+          polishing your resume, mapping out your career path, or getting ready to ace
+          technical interviews.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {sessions.map((session, index) => (
+            <SessionCard key={index} {...session} />
           ))}
         </div>
-      </div>
-      <button className="justify-center items-center flex gap-[7px] text-xl text-[#1D1D1B] font-medium tracking-[-1.2px] leading-none ml-[54px] mt-16 px-2.5 py-3 rounded-[4.477px] border-[0.746px] border-solid border-[#434343] max-md:ml-2.5 max-md:mt-10 hover:bg-gray-100 transition-colors">
-        <div className="text-[#1D1D1B] self-stretch my-auto">
-          Load More Sessions
+
+        <div className="flex justify-center mt-10">
+          <button className="border border-gray-400 rounded px-6 py-2 text-gray-800 font-medium hover:bg-gray-50 transition-colors">
+            Load More Sessions
+          </button>
         </div>
-      </button>
+      </div>
     </section>
   );
 };

@@ -29,9 +29,9 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-white to-[#F4F4F4] pt-24 pb-32">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-100/70 via-transparent to-yellow-100/70 pointer-events-none" />
+    <section className="relative pt-24 pb-32 overflow-hidden">
+      {/* Background gradient - blue to yellow like in the image */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-100 via-blue-50 to-yellow-50 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
