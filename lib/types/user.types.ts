@@ -43,14 +43,30 @@ export interface LoginRequest {
 }
 
 export interface RegisterStudentRequest {
-  firstName: string;
-  lastName: string;
+  // Firebase authentication
+  firebaseUid: string;
   email: string;
-  password: string;
-  university: string;
-  major: string;
-  year: string;
-  bio?: string;
+  
+  // Personal information
+  fullName: string;
+  age: number;
+  contactNumber: string;
+  
+  // Academic information
+  educationLevel: 'Grade_9' | 'O_L' | 'A_L';
+  school: string;
+  
+  // Learning preferences
+  preferredLearningStyle: 'Visual' | 'Hands_On' | 'Theoretical' | 'Mixed';
+  learningDisabilities: boolean;
+  disabilityDetails?: string;
+  
+  // Subjects of interest
+  subjects: {
+    subjectName: string;
+    currentYear: number;
+    skillLevel: 'Beginner' | 'Intermediate' | 'Advanced';
+  }[];
 }
 
 export interface RegisterMentorRequest {

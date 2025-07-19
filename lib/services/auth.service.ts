@@ -65,7 +65,52 @@ export class AuthService {
    * Register a new student
    */
   static async registerStudent(data: RegisterStudentRequest): Promise<AuthResponse> {
-   
+    try {
+      // API call to register student in the backend
+      const response = await fetch(`${this.baseUrl}/student/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firebaseUid: data.firebaseUid,
+          email: data.email,
+          fullName: data.fullName,
+          age: data.age,
+          contactNumber: data.contactNumber,
+          educationLevel: data.educationLevel,
+          school: data.school,
+          preferredLearningStyle: data.preferredLearningStyle,
+          learningDisabilities: data.learningDisabilities,
+          disabilityDetails: data.disabilityDetails || undefined,
+          subjects: data.subjects
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Student registration failed');
+      }
+      
+      // Create user object
+      const user: User = {
+        id: result.data.user.userId,
+        email: result.data.user.email,
+        firstName: result.data.studentDetails.fullName.split(' ')[0],
+        lastName: result.data.studentDetails.fullName.split(' ').slice(1).join(' '),
+        role: 'student',
+        createdAt: result.data.user.createdAt,
+        updatedAt: result.data.user.createdAt, // Using createdAt as updatedAt initially
+      };
+      
+      return {
+        user,
+        token: 'mock-jwt-token', // In a real implementation, this would come from the backend
+        refreshToken: 'mock-refresh-token'
+      };
+    } catch (error) {
+      console.error('Student registration error:', error);
+      throw error instanceof Error ? error : new Error('Registration failed');
+    }
   }
 
   /**

@@ -7,6 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Card } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { StepProgress } from '@/components/ui/step-progress';
+import { AuthService } from '@/lib/services/auth.service';
+import { useSearchParams } from 'next/navigation';
 
 interface FormData {
   // Part 1: Basic Information
@@ -52,6 +54,7 @@ const steps = [
 ];
 
 export default function StudentRegistrationPage() {
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
 
@@ -142,15 +145,89 @@ export default function StudentRegistrationPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [registrationError, setRegistrationError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateStep(3)) {
-      console.log('Student registration:', formData);
-      // Clear localStorage after successful submission
-      localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem(`${STORAGE_KEY}-step`);
-      // Handle registration logic here
-      alert('Registration submitted successfully!');
+      try {
+        setIsRegistering(true);
+        setRegistrationError(null);
+        console.log('Starting student registration process - direct API submission');
+        
+        // Prepare subjects array from subjectSkills
+        const subjects = Object.entries(formData.subjectSkills).map(([subjectName, skillLevel]) => ({
+          subjectName,
+          currentYear: parseInt(formData.currentYear, 10),
+          skillLevel: skillLevel as 'Beginner' | 'Intermediate' | 'Advanced'
+        }));
+        
+        // Get Firebase UID from URL query parameter
+        const firebaseUid = searchParams.get('uid');
+        if (!firebaseUid) {
+          throw new Error('Firebase UID is required. Please ensure you are properly authenticated.');
+        }
+
+        // Register student in backend with the Firebase UID from URL
+        const studentData = {
+          firebaseUid,
+          email: formData.email,
+          fullName: formData.fullName,
+          age: parseInt(formData.age, 10),
+          contactNumber: formData.contactNumber,
+          educationLevel: mapEducationLevel(formData.educationLevel),
+          school: formData.school,
+          preferredLearningStyle: mapLearningStyle(formData.preferredLearningStyle[0] || 'Mixed'),
+          learningDisabilities: formData.hasLearningDisabilities === 'yes',
+          disabilityDetails: formData.hasLearningDisabilities === 'yes' ? formData.learningDisabilitiesDescription : undefined,
+          subjects
+        };
+        
+        const authResponse = await AuthService.registerStudent(studentData);
+        console.log('Student registered in backend:', authResponse);
+        
+        // 4. Clear localStorage after successful submission
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(`${STORAGE_KEY}-step`);
+        
+        // 5. Store auth data in localStorage
+        localStorage.setItem('user', JSON.stringify(authResponse.user));
+        localStorage.setItem('authToken', authResponse.token);
+        localStorage.setItem('refreshToken', authResponse.refreshToken);
+        
+        alert('Registration completed successfully!');
+        
+        // 6. Redirect to student dashboard
+        window.location.href = '/student/dashboard';
+      } catch (error) {
+        console.error('Registration error:', error);
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+        setRegistrationError(errorMessage);
+        alert(`Registration failed: ${errorMessage}`);
+      } finally {
+        setIsRegistering(false);
+      }
+    }
+  };
+  
+  // Helper functions to map form values to API expected values
+  const mapEducationLevel = (level: string): 'Grade_9' | 'O_L' | 'A_L' => {
+    switch (level) {
+      case 'grade9': return 'Grade_9';
+      case 'ordinary': return 'O_L';
+      case 'advanced': return 'A_L';
+      default: return 'O_L';
+    }
+  };
+  
+  const mapLearningStyle = (style: string): 'Visual' | 'Hands_On' | 'Theoretical' | 'Mixed' => {
+    switch (style) {
+      case 'Visual': return 'Visual';
+      case 'Hands-On': return 'Hands_On';
+      case 'Theoretical': return 'Theoretical';
+      case 'Mixed': return 'Mixed';
+      default: return 'Mixed';
     }
   };
 
@@ -405,13 +482,20 @@ export default function StudentRegistrationPage() {
             ) : (
               <Button
                 type="submit"
-                disabled={!validateStep(3)}
+                disabled={!validateStep(3) || isRegistering}
               >
-                Complete Registration
+                {isRegistering ? 'Registering...' : 'Complete Registration'}
               </Button>
             )}
           </div>
         </form>
+        
+        {registrationError && (
+          <div className="mt-4 p-3 bg-red-50 border border-red-300 text-red-800 rounded-md">
+            <p className="text-sm font-medium">Registration failed</p>
+            <p className="text-xs">{registrationError}</p>
+          </div>
+        )}
 
         <div className="mt-6 text-center text-sm">
           <p>Already have an account? <a href="/login" className="text-blue-600 hover:underline">Login here</a></p>
