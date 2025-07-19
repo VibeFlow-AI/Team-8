@@ -69,12 +69,12 @@ enum BookingStatus {
 }
 
 model User {
-  userId       BigInt    @id @default(autoincrement()) @map("user_id")
-  email        String    @unique
-  passwordHash String    @map("password_hash")
-  role         Role
-  createdAt    DateTime  @default(now()) @map("created_at")
-  lastLogin    DateTime? @map("last_login")
+  userId      BigInt    @id @default(autoincrement()) @map("user_id")
+  firebaseUid String    @unique @map("firebase_uid")
+  email       String    @unique
+  role        Role
+  createdAt   DateTime  @default(now()) @map("created_at")
+  lastLogin   DateTime? @map("last_login")
 
   // Relations
   studentDetails StudentDetails?
