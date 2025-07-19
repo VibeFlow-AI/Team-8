@@ -59,7 +59,7 @@ const SessionHighlights = () => {
         </div>
 
         <div className="flex justify-center mt-10">
-          <button className="border border-gray-400 rounded px-6 py-2 text-gray-800 font-medium hover:bg-gray-50 transition-colors">
+          <button className="cursor-pointer border border-gray-400 rounded px-6 py-2 text-gray-800 font-medium hover:bg-gray-50 transition-colors">
             Load More Sessions
           </button>
         </div>

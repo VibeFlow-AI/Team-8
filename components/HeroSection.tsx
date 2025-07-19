@@ -43,8 +43,8 @@ const HeroSection = () => {
             <div className="col-span-1 flex justify-center">
               <div className="relative bg-[#F4E3D7] rounded-full overflow-hidden h-56 w-32 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=600&q=80"
-                  alt="Student profile"
+                  src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 1"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -52,8 +52,8 @@ const HeroSection = () => {
             <div className="col-span-1 mt-4">
               <div className="relative bg-[#3A3A3A] rounded-full overflow-hidden h-56 w-32 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 2"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -61,8 +61,8 @@ const HeroSection = () => {
             <div className="col-span-1 flex justify-end">
               <div className="relative bg-[#F9F0E7] rounded-full overflow-hidden h-60 w-30 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=600&q=80"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 3"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -72,8 +72,8 @@ const HeroSection = () => {
             <div className="col-span-1 -mt-2">
               <div className="relative bg-[#8D7B68] rounded-full overflow-hidden h-60 w-30 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 4"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -81,8 +81,8 @@ const HeroSection = () => {
             <div className="col-span-1 mt-6">
               <div className="relative bg-[#424242] rounded-full overflow-hidden h-68 w-36 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 5"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -90,8 +90,8 @@ const HeroSection = () => {
             <div className="col-span-1 mt-8">
               <div className="relative bg-[#FFB74D] rounded-full overflow-hidden h-60 w-30 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 6"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -101,8 +101,8 @@ const HeroSection = () => {
             <div className="col-span-1">
               <div className="relative bg-[#E0E0E0] rounded-full overflow-hidden h-52 w-28 mt-2 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/357514/pexels-photo-357514.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 7"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -110,8 +110,8 @@ const HeroSection = () => {
             <div className="col-span-1 mt-3">
               <div className="relative bg-[#A5D6A7] rounded-full overflow-hidden h-56 w-30 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 8"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -119,8 +119,8 @@ const HeroSection = () => {
             <div className="col-span-1 -mt-4">
               <div className="relative bg-[#4FC3F7] rounded-full overflow-hidden h-56 w-30 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 9"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -130,8 +130,8 @@ const HeroSection = () => {
             <div className="col-span-1 mt-2">
               <div className="relative bg-[#EF9A9A] rounded-full overflow-hidden h-60 w-32 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png"
-                  alt="Profile"
+                  src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 10"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -139,19 +139,18 @@ const HeroSection = () => {
             <div className="col-span-1 mt-6">
               <div className="relative bg-[#CE93D8] rounded-full overflow-hidden h-64 w-34 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png"
-                  alt="Google Logo"
-                  className="absolute bottom-2 right-2 w-6 h-6 opacity-75"
+                  src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 11"
+                  className="w-full h-full object-cover"
                 />
-
               </div>
             </div>
             <div className="col-span-1 mt-4">
               <div className="relative bg-[#90CAF9] rounded-full overflow-hidden h-56 w-30 shadow-lg hover:shadow-xl transition-shadow">
                 <img
-                  src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png"
-                  alt="Google Logo"
-                  className="absolute bottom-2 right-2 w-6 h-6 opacity-75"
+                  src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pexels image 12"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
