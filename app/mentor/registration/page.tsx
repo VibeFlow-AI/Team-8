@@ -6,7 +6,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { Progress } from "@/components/ui/progress";
+import { StepProgress } from "@/components/ui/step-progress";
+
+const steps = [
+  {
+    id: 1,
+    title: "Personal Information",
+    description: "Provide your personal details.",
+  },
+  {
+    id: 2,
+    title: "Areas of Expertise",
+    description: "Showcase your skills and experience.",
+  },
+  {
+    id: 3,
+    title: "Social & Professional Links",
+    description: "Connect your social and professional accounts.",
+  },
+];
 
 export default function MentorRegistrationPage() {
   const [mounted, setMounted] = useState(false);
@@ -118,7 +136,11 @@ export default function MentorRegistrationPage() {
           <h1 className="text-3xl font-bold text-center mb-8">
             Mentor Registration
           </h1>
-          <Progress value={currentStep * 33.33} className="mb-6" />
+          <StepProgress
+            steps={steps}
+            currentStep={currentStep}
+            className="mb-6"
+          />
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {currentStep === 1 && (
