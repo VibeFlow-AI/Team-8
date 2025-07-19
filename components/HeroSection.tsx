@@ -23,7 +23,7 @@ const HeroSection = () => {
                 EduVibe connects students with experienced mentors to guide them through their academic
               </p>
             </div>
-            <button className="bg-black text-white flex items-center gap-2.5 text-2xl md:text-[32px] font-medium tracking-[-1.92px] leading-none justify-center mt-10 px-6 md:px-[35px] py-2.5 rounded-lg hover:bg-gray-800 transition-colors mx-auto md:mx-0">
+            <button className="bg-black text-white flex items-center gap-2.5 text-2xl md:text-[32px] font-medium tracking-[-1.92px] leading-none justify-center mt-10 px-6 md:px-[35px] py-2.5 rounded-lg hover:bg-gray-800 transition-colors mx-auto md:mx-0 cursor-pointer">
               Get Started
             </button>
           </div>

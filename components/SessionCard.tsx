@@ -73,7 +73,7 @@ const SessionCard: React.FC<SessionCardProps> = ({
             </div>
 
             <div className="flex justify-between mt-24">
-                <button className="bg-black text-white rounded-[4px] px-4 py-2 text-sm w-full">
+                <button className="bg-black text-white rounded-[4px] px-4 py-2 text-sm w-full cursor-pointer">
                     Book a session
                 </button>
                 <button className="ml-4 border border-gray-300 p-2 rounded-[4px]">

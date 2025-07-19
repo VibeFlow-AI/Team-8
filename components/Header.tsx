@@ -14,10 +14,12 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/" aria-label="Home">
-            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M33.1667 15.4167C33.1667 7.75 26.25 1.08333 17 1.08333C7.75 1.08333 0.833328 7.75 0.833328 15.4167C0.833328 23.0833 7.75 29.75 17 29.75C26.25 29.75 33.1667 23.0833 33.1667 15.4167Z" fill="#667085" />
-              <path d="M22.1917 23.6167L11.8083 10.3833" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M11.8083 23.6167L22.1917 10.3833" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 48 48">
+              <title>Google Icon</title>
+              <path fill="#4285F4" d="M24 9.5c3.1 0 5.7 1.2 7.7 3.1l5.7-5.7C33.7 3.8 29.2 2 24 2 14.8 2 6.8 7.5 3 15l7.4 5.8C12.4 15.1 17.5 9.5 24 9.5z" />
+              <path fill="#34A853" d="M46.1 24.5c0-1.7-.1-3.3-.4-4.8H24v9h12.5c-.5 2.9-2.3 5.3-4.9 7l7.5 5.8c4.3-4 6.8-9.9 6.8-17z" />
+              <path fill="#FBBC05" d="M10.4 28.5c-.8-2.4-1.2-5-1.2-7.7s.4-5.3 1.2-7.7l-7.4-5.8C1.2 13.1 0 18.5 0 24s1.2 10.9 3 15l7.4-5.8z" />
+              <path fill="#EA4335" d="M24 46c5.2 0 9.6-1.7 12.8-4.6l-7.5-5.8c-2.1 1.4-4.8 2.3-5.8 2.3-4.5 0-8.3-3-9.6-7.1l-7.4 5.8C6.8 40.4 14.8 46 24 46z" />
             </svg>
           </Link>
         </div>
@@ -77,7 +79,7 @@ const Header = () => {
 
         {/* CTA Button */}
         <Link href="/signup">
-          <button className="bg-black text-white text-base font-semibold px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+          <button className="cursor-pointer bg-black text-white text-base font-semibold px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
             Get Started
           </button>
         </Link>
