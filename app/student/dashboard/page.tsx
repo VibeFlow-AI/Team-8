@@ -37,7 +37,7 @@ export default function StudentDashboardPage() {
   const [selectedDuration, setSelectedDuration] = useState<string>('all');
   const [selectedExpertise, setSelectedExpertise] = useState<string>('all');
   const [priceRange, setPriceRange] = useState<string>('all');
-  const [activeTab, setActiveTab] = useState<'overview' | 'discover'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'discover'>('discover');
 
   useEffect(() => {
     // Mock data - replace with actual API call
@@ -182,23 +182,13 @@ export default function StudentDashboardPage() {
     <div className="p-6">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">Welcome back, {studentName}!</h1>
+          <h1 className="text-3xl font-bold">Welcome back, Student!</h1>
           <p className="text-gray-600 mt-2">Manage your mentoring sessions and discover new mentors</p>
         </div>
 
         {/* Navigation Tabs */}
         <div className="mb-8">
           <nav className="flex space-x-8">
-            <button
-              onClick={() => setActiveTab('overview')}
-              className={`py-2 px-1 border-b-2 font-medium text-sm ${
-                activeTab === 'overview'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Dashboard Overview
-            </button>
             <button
               onClick={() => setActiveTab('discover')}
               className={`py-2 px-1 border-b-2 font-medium text-sm ${

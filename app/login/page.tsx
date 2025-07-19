@@ -4,25 +4,79 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card } from '@/components/ui/card';
+import { Card, CardHeader, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
+import { auth } from '@/lib/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState<'student' | 'mentor'>('student');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle login logic here
-    console.log('Login attempt:', { email, password, userType });
+  const handleLogin = async (userType: 'student' | 'mentor') => {
+    // Reset error state
+    setError('');
+    
+    // Validate form inputs
+    if (!email || !password) {
+      setError('Email and password are required');
+      return;
+    }
+    
+    try {
+      setLoading(true);
+      
+      // Sign in with Firebase Auth
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      
+      const user = userCredential.user;
+      console.log('User logged in successfully:', user);
+      
+      // Store user type in localStorage for future reference
+      localStorage.setItem('userType', userType);
+      
+      // Redirect to the appropriate dashboard based on user type
+      if (userType === 'student') {
+        router.push('/student/dashboard');
+      } else {
+        router.push('/mentor/dashboard');
+      }
+      
+    } catch (err: any) {
+      console.error('Login error:', err);
+      // Handle specific Firebase auth errors
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+        setError('Invalid email or password');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Invalid email address');
+      } else if (err.code === 'auth/too-many-requests') {
+        setError('Too many failed login attempts. Please try again later');
+      } else {
+        setError('Failed to login. Please try again');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md p-6">
-        <h1 className="text-2xl font-bold text-center mb-6">Login to VibeFlow</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-center">
+            Login to VibeFlow
+          </CardTitle>
+        </CardHeader>
         
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <CardContent className="space-y-4">
           <div>
             <Label htmlFor="email">Email</Label>
             <Input
@@ -30,6 +84,7 @@ export default function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
               required
             />
           </div>
@@ -41,52 +96,46 @@ export default function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
               required
             />
           </div>
 
-          <div>
-            <Label>I am a:</Label>
-            <div className="flex gap-4 mt-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  value="student"
-                  checked={userType === 'student'}
-                  onChange={(e) => setUserType(e.target.value as 'student' | 'mentor')}
-                  className="mr-2"
-                />
-                Student
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  value="mentor"
-                  checked={userType === 'mentor'}
-                  onChange={(e) => setUserType(e.target.value as 'student' | 'mentor')}
-                  className="mr-2"
-                />
-                Mentor
-              </label>
+          {error && (
+            <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm">
+              {error}
             </div>
-          </div>
+          )}
 
-          <Button type="submit" className="w-full">
-            Login
-          </Button>
-        </form>
-
-        <div className="mt-4 text-center text-sm">
-          <p>Don't have an account?</p>
-          <div className="mt-2 space-x-4">
-            <a href="/student/registration" className="text-blue-600 hover:underline">
-              Register as Student
-            </a>
-            <a href="/mentor/registration" className="text-blue-600 hover:underline">
-              Register as Mentor
-            </a>
+          <div className="pt-4 flex flex-col gap-3">
+            <Button 
+              variant="default" 
+              className="w-full"
+              onClick={() => handleLogin('student')}
+              disabled={loading}
+            >
+              {loading ? 'Logging in...' : 'Login as Student'}
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => handleLogin('mentor')}
+              disabled={loading}
+            >
+              {loading ? 'Logging in...' : 'Login as Mentor'}
+            </Button>
           </div>
-        </div>
+        </CardContent>
+        
+        <CardFooter className="flex justify-center flex-col gap-1">
+          <p className="text-sm text-center text-muted-foreground">
+            Don't have an account?
+          </p>
+          <Link href="/signup" className="text-sm text-primary hover:underline">
+            Sign up here
+          </Link>
+        </CardFooter>
       </Card>
     </div>
   );

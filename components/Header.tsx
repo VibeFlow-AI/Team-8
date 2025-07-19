@@ -73,16 +73,26 @@ const Header = () => {
               <Link href="/about" className="text-[#344054] hover:text-[#172B4D] transition-colors">
                 About
               </Link>
+              <Link href="/login" className="text-[#344054] hover:text-[#172B4D] transition-colors">
+                Login
+              </Link>
             </nav>
           </div>
         )}
 
-        {/* CTA Button */}
-        <Link href="/signup">
-          <button className="cursor-pointer bg-black text-white text-base font-semibold px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
-            Get Started
-          </button>
-        </Link>
+        {/* CTA Buttons */}
+        <div className="flex gap-4">
+          <Link href="/login">
+            <button className="border border-black text-black text-base font-semibold px-6 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+              Login
+            </button>
+          </Link>
+          <Link href="/signup">
+            <button className="bg-black text-white text-base font-semibold px-6 py-2 rounded-lg hover:bg-gray-800 transition-colors">
+              Get Started
+            </button>
+          </Link>
+        </div>
       </div>
     </header>
   );
