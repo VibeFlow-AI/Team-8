@@ -120,12 +120,62 @@ export default function MentorRegistrationPage() {
     localStorage.setItem("mentorFormStep", prevStep.toString());
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (currentStep < 3) {
       handleNext();
     } else {
-      console.log("Mentor registration:", formData);
+      try {
+        const { getAuth } = await import("firebase/auth");
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        if (!user) {
+          alert("You must be logged in to register as a mentor.");
+          return;
+        }
+
+        const subjects = formData.subjects.split(',').map(s => s.trim());
+        const apiData = {
+          firebaseUid: user.uid,
+          email: user.email!,
+          fullName: formData.fullName,
+          age: parseInt(formData.age),
+          contactNumber: formData.contactNumber,
+          preferredLanguage: formData.preferredLanguage,
+          currentLocation: formData.currentLocation,
+          bio: formData.shortBio,
+          professionalRole: formData.professionalRole,
+          subjects: subjects.map(subject => ({
+            subjectName: subject,
+            teachingExperience: formData.teachingExperience.replace(' years', '').replace('+', '_Plus_Years').replace('-', '_to_'),
+            preferredLevels: formData.preferredLevels,
+          })),
+          linkedinUrl: formData.linkedin,
+          githubOrPortfolioUrl: formData.portfolio,
+          profilePictureUrl: "https://example.com/profile.jpg", // Placeholder
+        };
+
+        const response = await fetch('/api/mentor/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(apiData),
+        });
+
+        if (response.ok) {
+          alert('Mentor registration successful!');
+          localStorage.removeItem('mentorFormData');
+          localStorage.removeItem('mentorFormStep');
+        } else {
+          const errorData = await response.json();
+          alert(`Registration failed: ${errorData.error}`);
+        }
+      } catch (error) {
+        console.error("Error during mentor registration:", error);
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
   };
 
